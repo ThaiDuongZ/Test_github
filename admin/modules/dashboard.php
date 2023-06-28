@@ -1,0 +1,1 @@
+<h2>Dữ liệu sẽ sớm được đưa vào sử dụng<span class="badge bg-secondary">New</span></h2>
