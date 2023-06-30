@@ -13,6 +13,9 @@
         include('modules/qldm/update.php');
     }elseif($_admin=='product' && $_query =='add'){
         include('modules/product/add.php');
+        include('modules/product/select.php');
+    }elseif($_admin=='product' && $_query =='update'){
+        include('modules/product/update.php');
     }else{
         include('modules/dashboard.php');
     }

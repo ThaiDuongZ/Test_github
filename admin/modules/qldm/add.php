@@ -4,8 +4,14 @@
     $_count_Ma_dm = "SELECT COUNT(Ma_dm) AS Sl_dm FROM DM";
     $_sql_count_Ma_dm = mysqli_query($mysqli,$_count_Ma_dm);
     // Đếm số danh mục đang sửa dụng
-    // $_count_Ma_dm = "SELECT COUNT(Ma_dm) AS Sl_dm FROM DM";
-    // $_sql_count_Ma_dm = mysqli_query($mysqli,$_count_Ma_dm);
+    $_count_Active = "SELECT COUNT(Active) AS Sl_active FROM DM WHERE Active = '1'";
+    $_sql_count_Active = mysqli_query($mysqli,$_count_Active);
+    // Lấy ngày thêm danh mục gần nhất
+    $_count_Ngay_ct = "SELECT Ngay_ct, Ten_dm FROM DM ORDER BY Ngay_ct DESC LIMIT 1";
+    $_sql_count_Ngay_ct = mysqli_query($mysqli,$_count_Ngay_ct);
+    // Lấy ngày sửa danh mục gần nhất
+    $_count_Ngay_sua = "SELECT Ngay_sua, Ten_dm FROM DM ORDER BY Ngay_sua DESC LIMIT 1";
+    $_sql_count_Ngay_sua = mysqli_query($mysqli,$_count_Ngay_sua);
 ?>
 <form method="POST" action="modules/qldm/edit.php">
     <div class="add__gird">
@@ -30,7 +36,7 @@
                 <div class="add__name">
                     <div class="add__name--name">Acitve</div>
                     <select name="Active" id="" class="form-select" style="width: 200px">
-                        <option value="1">Sử dựng</option>
+                        <option value="1">Sử dụng</option>
                         <option value="0">Không sử dụng</option>
                     </select>
                 </div>
@@ -41,6 +47,27 @@
                     while($row = mysqli_fetch_array($_sql_count_Ma_dm)){                
                 ?>
                 <div class="add__code--name_count"> Số lượng danh mục hiện tại : <?php echo $row['Sl_dm'] ?></div>
+                <?php
+                    }
+                ?>
+                <?php
+                    while($row = mysqli_fetch_array($_sql_count_Active)){                
+                ?>
+                <div class="add__code--name_count"> Số lượng danh mục đang sử dụng : <?php echo $row['Sl_active'] ?></div>
+                <?php
+                    }
+                ?>
+                <?php
+                    while($row = mysqli_fetch_array($_sql_count_Ngay_ct)){                
+                ?>
+                <div class="add__code--name_count"> Ngày tạo danh mục gần nhất : <?php echo $row['Ngay_ct']?> - <?php echo $row['Ten_dm'] ?></div>
+                <?php
+                    }
+                ?>
+                <?php
+                    while($row = mysqli_fetch_array($_sql_count_Ngay_sua)){                
+                ?>
+                <div class="add__code--name_count"> Ngày sửa danh mục gần nhất : <?php echo $row['Ngay_sua']?> - <?php echo $row['Ten_dm'] ?></div>
                 <?php
                     }
                 ?>

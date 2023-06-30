@@ -29,12 +29,26 @@
                 </div>
                 <div class="add__name">
                     <div class="add__name--name" >Acitve</div>
-                    <select name="Active" id="" class="form-select" style="width: 200px">
-                        <option value="1">Sử dựng</option>
-                        <option value="0">Không sử dụng</option>
-                    </select>
+                    <?php
+                        if($_row['Active'] == '1'){
+                    ?>
+                        <select name="Active" id="" class="form-select" style="width: 200px">
+                            <option value="1">Sử dụng</option>
+                            <option value="0">Không sử dụng</option>
+                        </select>
+                    <?php
+                        }else{
+                    ?>
+                        <select name="Active" id="" class="form-select" style="width: 200px">
+                            <option value="0">Không sử dụng</option>
+                            <option value="1">Sử dụng</option>
+                        </select>
+                    <?php     
+                        }
+                    ?>
                 </div>
                 <input type="submit" value="Submit" class="btn btn-secondary add__dm" name="Update_dm">
+                <a style="background-color: #838383; margin-left: 200px;border-color: #838383" class="btn btn-primary add__dm" href="index.php?admin=qldm&query=add" role="button">Back</a>
             </div>
         </div>
     </div>
